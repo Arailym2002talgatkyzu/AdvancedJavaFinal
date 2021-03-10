@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        .question {
+            width: 60%;
+            padding: 2% 2% 1%;
+            display: flex;
+            flex-direction: column;
+            margin: 2% auto;
+            color: rgb(240, 245, 253);
+            background-color: #1c2e4b;
+            box-shadow: 0 15px 25px #ffffff;
+            border-radius: 12px;
+        }
+        .stat {
+            background-color: black;
+            color: whitesmoke;
+            width: 60%;
+            padding: 2% 2% 1%;
+            display: flex;
+            flex-direction: column;
+            margin: 2% auto;
+            border-radius: 12px;
+        }
+        .question div:not(.mt-2) {
+            display: flex;
+            justify-content: center;
+        }
+
+        .question div {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .question div a {
+            border: none;
+            padding: 1% 3%;
+        }
+
+        .question div:not(.mt-2) a {
+            padding: 1% 3%;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            transition: ease-in-out .3s;
+        }
+
+        .question div:not(.mt-2) a:hover {
+            text-decoration: none;
+            background-color: #e5e16c;
+        }
+
+        .question div:not(.mt-2) a:first-child {
+            border-radius: 12px 0 0 12px;
+        }
+
+        .question div:not(.mt-2) a:nth-child(2) {
+            border-radius: 0 12px 12px 0;
+        }
+
+        @media(max-width:900px) {
+            .question {
+                padding: 2%;
+                margin: 2% auto;
+                border-radius: 12px;
+                width: 80%;
+            }
+        }
+    </style>
+    <style>
+        .header {
+            background-color: rgba(28, 46, 75, 0.87);
+        }
+
+        .header a {
+            color: #9FBAC5;
+            transition: ease-in-out .2s;
+        }
+
+        .header a:hover {
+            text-shadow: 0 1px 5px #FFE0F7;
+            color: white;
+            text-decoration: none;
+        }
+
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        html {
+            height: 100%;
+            width: 100%;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0px;
+        }
+
+        body {
+            height: 100%;
+            background: url(https://goldwallpapers.com/uploads/posts/dark-blue-backgrounds/dark_blue_backgrounds_029.jpg) center/ cover fixed no-repeat;
+        }
+    </style>
+    <!-- css -->
+    <link rel="stylesheet" href="static.style/home.css">
+    <link rel="stylesheet" href="static.style/index.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="header p-3 d-flex justify-content-around">
+    <a href="/profile">PROFILE</a>
+    <a href="/home">HOME</a>
+
+    <!--    <a href="/logout">log out</a>-->
+    <form th:action="@{/logout}"  method="post">
+        <input type="submit" class="btn btn-outline-light" value="SIGN OUT"/>
+    </form>
+</div>
+
+<div th:each="question : ${questions}">
+    <div class="question">
+        <strong class="text-center mb-3" th:text="${question.getQuestion()}"></strong>
+
+        <div>
+            <a th:href="@{/question/tapAns1(id=${question.getId()},user_id=${userid})}"
+               th:text="${question.getAns1()}"></a>
+            <a th:href="@{/question/tapAns2(id=${question.getId()},user_id=${userid})}"
+               th:text="${question.getAns2()}"></a>
+            <br>
+
+        </div>
+        <div>
+            <p class="text-center" th:text="${'General vote count: '+question.getCount()}"></p>
+        </div>
+        <div class="mt-2" th:if="${authority==true}">
+            <a class="btn btn-outline-light" th:href="@{/question/remove(id=${question.id})}">remove</a>
+            <a class="btn btn-outline-light" th:href="@{/questionEdit(id=${question.id})}">update</a>
+        </div>
+    </div>
+    <div class="stat">
+        <p th:text="${question.getAns1()+' - choosed '+questionServer.getCount(question.ans1_count,question.count)+'%'}">Ans1 count</p>
+        <p th:text="${question.getAns2()+' - choosed '+questionServer.getCount(question.ans2_count,question.count)+'%'}">Ans2 count</p>
+    </div>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

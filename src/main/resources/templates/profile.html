@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        li {
+            list-style: none;
+        }
+
+        .box {
+            margin: 5vmin auto;
+            background: rgba(0, 0, 0, 0);
+            padding: 5%;
+            width: 90%;
+        }
+
+        .box .data {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 2%;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .box .data div {
+            width: 50%;
+        }
+
+        .box .data div ul {
+            display: block;
+            overflow-y: scroll;
+            max-height: 100px;
+        }
+
+        .box table {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-spacing: 5px;
+            border-collapse: collapse;
+            display: block;
+            overflow-y: scroll;
+            max-height: 200px;
+            width: 90%;
+            margin: 2% auto;
+        }
+
+        .box table tr {
+            margin: 0 auto;
+        }
+
+        .box table th,
+        .box table td {
+            padding: 1%;
+            width: 30vmax;
+            border: 2px solid black;
+        }
+    </style>
+    <style>
+        .header {
+            background-color: #1c2e4bde;
+        }
+
+        .header a {
+            color: #9FBAC5;
+            transition: ease-in-out .2s;
+        }
+
+        .header a:hover {
+            text-shadow: 0 1px 5px #FFE0F7;
+            color: white;
+            text-decoration: none;
+        }
+
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        html {
+            height: 100%;
+            width: 100%;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0px;
+        }
+
+        body {
+            height: 100%;
+            background: url(https://goldwallpapers.com/uploads/posts/dark-blue-backgrounds/dark_blue_backgrounds_029.jpg) center/ cover fixed no-repeat;
+        }
+        .editors{
+            background-color: #07255b;
+            border-radius: 5px;
+            width: 150px;
+            margin-top: 10px;
+            color: white;
+        }
+        p{
+            color: #180faa;
+            font-size: 20px;
+        }
+    </style>
+    <!-- css -->
+    <link rel="stylesheet" href="static.style/profile.css">
+    <link rel="stylesheet" href="static.style/index.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="header p-3 d-flex justify-content-around">
+    <a href="/profile">PROFILE</a>
+    <a href="/home">HOME</a>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" class="btn btn-outline-light" value="SIGN OUT"/>
+    </form>
+</div>
+
+<div class="box">
+
+    <div class="data">
+        <div>
+            <p th:text="${'Name: '+user.getUser_name()}"></p>
+            <p th:text="${'Group: '+user.getUser_group()}"></p>
+            <p th:text="${'Age: '+user.getUser_age()}"></p>
+           <button class="editors"><a href="/profileEdit" style="text-decoration: none; color: white">EDIT PROFILE</a></button> <br>
+            <button class="editors"><a href="/admin" th:if="${authority==true}" style="text-decoration: none; color: white">ADD QUESTION</a></button>
+        </div>
+        <div th:if="${interests!=null}">
+            <p>Interests:</p>
+            <ul th:each="interest : ${interests}">
+                <li th:text="${interest}">hobby</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

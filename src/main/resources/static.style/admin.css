@@ -1,0 +1,36 @@
+ form {
+     background-color: rgba(0, 0, 0, 0.699);
+     margin: 1% auto;
+     width: 40%;
+     padding: 2% 4%;
+     border-radius: 15px;
+     display: -webkit-box;
+     display: -ms-flexbox;
+     display: flex;
+     -webkit-box-orient: vertical;
+     -webkit-box-direction: normal;
+     -ms-flex-direction: column;
+     flex-direction: column;
+ }
+ 
+ form input,
+ form textarea {
+     width: 90%;
+     margin: 3% auto;
+     padding: 2% 2.5%;
+     border-radius: 8px;
+     border: none;
+ }
+ 
+ form input[type=submit] {
+     background-color: black;
+     color: white;
+     width: 50%;
+ }
+ 
+ @media(max-width:900px) {
+     form {
+         margin: 20% auto;
+         width: 70%;
+     }
+ }

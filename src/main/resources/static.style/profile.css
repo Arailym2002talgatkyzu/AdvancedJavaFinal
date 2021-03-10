@@ -1,0 +1,50 @@
+li {
+    list-style: none;
+}
+
+.box {
+    margin: 5vmin auto;
+    background: rgba(0, 0, 0, 0);
+    padding: 5%;
+    width: 90%;
+}
+
+.box .data {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 2%;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+}
+
+.box .data div {
+    width: 50%;
+}
+
+.box .data div ul {
+    display: block;
+    overflow-y: scroll;
+    max-height: 100px;
+}
+
+.box table {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-spacing: 5px;
+    border-collapse: collapse;
+    display: block;
+    overflow-y: scroll;
+    max-height: 200px;
+    width: 90%;
+    margin: 2% auto;
+}
+
+.box table tr {
+    margin: 0 auto;
+}
+
+.box table th,
+.box table td {
+    padding: 1%;
+    width: 30vmax;
+    border: 2px solid black;
+}

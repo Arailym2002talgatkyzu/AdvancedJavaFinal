@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        form:not(.logout) {
+            background-color: rgba(0, 0, 0, 0.699);
+            margin: 1% auto;
+            width: 40%;
+            padding: 2% 4%;
+            border-radius: 15px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+        }
+
+        form:not(.logout) input,
+        form textarea {
+            width: 90%;
+            margin: 3% auto;
+            padding: 2% 2.5%;
+            border-radius: 8px;
+            border: none;
+        }
+
+        form:not(.logout) input[type=submit] {
+            background-color: black;
+            color: white;
+            width: 50%;
+        }
+
+        @media(max-width:900px) {
+            form {
+                margin: 20% auto;
+                width: 70%;
+            }
+        }
+    </style>
+    <style>
+        .header {
+            background-color: #1c2e4bde;
+        }
+
+        .header a {
+            color: #9FBAC5;
+            transition: ease-in-out .2s;
+        }
+
+        .header a:hover {
+            text-shadow: 0 1px 5px #FFE0F7;
+            color: white;
+            text-decoration: none;
+        }
+
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        html {
+            height: 100%;
+            width: 100%;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0px;
+        }
+
+        body {
+            height: 100%;
+            background: url(https://goldwallpapers.com/uploads/posts/dark-blue-backgrounds/dark_blue_backgrounds_029.jpg) center/ cover fixed no-repeat;
+        }
+    </style>
+    <!-- css -->
+    <link rel="stylesheet" href="static.style/log.css">
+    <link rel="stylesheet" href="static.style/index.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+<form th:action="@{/user/edit}" method="post">
+    <h3 class="text-center text-white">Profile Edit</h3>
+    <input type="text" name="fname" placeholder="full name" th:value="${user.getUser_name()}">
+    <input type="number" name="age" placeholder="age" th:value="${user.getUser_age()}">
+
+    <input type="text" name="group" placeholder="group" th:value="${user.getUser_group()}">
+    <input type="text" name="interest" placeholder="interest" th:value="${user.getUser_interest()}">
+    <input type="text" name="email" placeholder="email" th:value="${user.getEmail()}">
+    <input type="text" name="password" placeholder="create new password or left it empty to save prev">
+
+    <div hidden>
+        <input type="text" name="id" th:value="${user.getUser_id()}">
+        <input type="text" name="enabled" th:value="${user.isEnabled()}">
+        <input type="text" name="prev_group"  th:value="${user.getUser_group()}">
+        <input type="text" name="prev_interest"  th:value="${user.getUser_interest()}">
+        <input type="text" name="prev_password" th:value="${user.getPassword()}">
+        <input type="text" name="prev_age" th:value="${user.getUser_age()}">
+    </div>
+    <input type="submit">
+</form>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+.header {
+    background-color: #1c2e4bde;
+}
+
+.header a {
+    color: #9FBAC5;
+    transition: ease-in-out .2s;
+}
+
+.header a:hover {
+    text-shadow: 0 1px 5px #FFE0F7;
+    color: white;
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+body {
+    height: 100%;
+    background: url(https://goldwallpapers.com/uploads/posts/dark-blue-backgrounds/dark_blue_backgrounds_029.jpg) center/ cover fixed no-repeat;
+}
