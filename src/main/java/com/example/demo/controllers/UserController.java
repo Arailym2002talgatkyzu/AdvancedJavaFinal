@@ -21,16 +21,21 @@ public class UserController {
 
     @PostMapping("add")
     public RedirectView add(HttpServletRequest request) {
-
-        UserEntity user = new UserEntity(
-                request.getParameter("fname"),
-                request.getParameter("group"),
-                Integer.parseInt(request.getParameter("age")),
-                request.getParameter("interest"),
-                request.getParameter("email"),
-                passwordEncoder.encode(request.getParameter("password"))
-        );
-        userRepo.save(user);
+        try{
+            System.out.println("hell");
+            UserEntity user = new UserEntity(
+                    request.getParameter("fname"),
+                    request.getParameter("group"),
+                    Integer.parseInt(request.getParameter("age")),
+                    request.getParameter("interest"),
+                    request.getParameter("email"),
+                    passwordEncoder.encode(request.getParameter("password"))
+            );
+            userRepo.save(user);
+        }
+        catch (Exception c){
+            System.out.println(c);
+        }
 
 
         return new RedirectView("/home");
@@ -38,7 +43,7 @@ public class UserController {
 
     @PostMapping("edit")
     public RedirectView edit(HttpServletRequest request) {
-
+        System.out.println("heaven");
         UserEntity user = new UserEntity(
                 Integer.parseInt(request.getParameter("id")),
                 request.getParameter("fname"),

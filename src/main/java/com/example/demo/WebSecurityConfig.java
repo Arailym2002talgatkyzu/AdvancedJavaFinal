@@ -70,6 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/*.css"
                 ).permitAll()
                 .antMatchers("/", "/reg").permitAll()
+                .antMatchers("/user/add").permitAll()
              // .antMatchers("/questionEdit", "/admin").hasAuthority(String.valueOf(getCurrentUser().getRole().toString()==3))
                 .anyRequest().authenticated()
                 .and()
